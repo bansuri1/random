@@ -2,8 +2,8 @@
 
 import sys
 
-def countSyllables(word):
 
+def countSyllables(word):
     # appends plural and past tense
     # create sep function for this eventually with other things like -ies and exceptions for global exceptions dict
     def appendMergeSuffix(list):
@@ -29,24 +29,22 @@ def countSyllables(word):
     vowels = 'aeiouy'
     twoSyllable = ['ao', 'eo', 'ia', 'io', 'iu', 'oe', 'ua', 'ue', 'ui', 'uo']
 
-    suffix1 = ['s','d']
+    suffix1 = ['s', 'd']
     suffix2 = ['s', 'ed']
     # all endings with 2 or more vowels to be counted as one syllable
 
-    oneSyllableEnding = ('tian','tion','cian','cion','sian','sion')
+    oneSyllableEnding = ('tian', 'tion', 'cian', 'cion', 'sian', 'sion')
     oneSyllableEnding = appendMergeSuffix(oneSyllableEnding)
 
-
-
     # -e endings to count as 2 syllables
-    eEndings2 = ('ble', 'dle', 'cle', 'ple', 'bole')
+    eEndings2 = ('ble', 'dle', 'cle', 'ple', 'bole', 'gle')
     eEndings2 = appendMergeSuffix(eEndings2)
 
     # -e endings to count as 0 syllables
     eEndings0 = ('gue', 'que')
     eEndings0 = appendMergeSuffix(eEndings0)
 
-    plEndings1 = ('ses','ches','shes','xes','zes','ies')
+    plEndings1 = ('ses', 'ches', 'shes', 'xes', 'zes', 'ies')
     pastEndings1 = ('ied')
 
     # add plurals
@@ -64,12 +62,15 @@ def countSyllables(word):
                         'ague': 2,
                         'segue': 2,
                         'she': 1,
-                        'tried':1, #will not work with function
-                        'tries': 1 # will not work with function
+                        'tried': 1,  # will not work with function
+                        'tries': 1  # will not work with function
                         }
+    word = word.lower()
 
-
-    word = word.lower().replace('\'', "")
+    #specialChar = ["\'", '.', ',', '/', '!', '@', '#', '-', '~', '$', '%', '^', '&', '*', '(', ')', '+', '=', '[', ']',
+            #       '{', '}', '?', ':', ';']
+   # for char in specialChar:
+       # word = word.replace(char, "")
 
     count = 0
     if word in globalExceptions.keys():
@@ -77,7 +78,7 @@ def countSyllables(word):
     else:
         if word[0] in vowels:
             count += 1
-            #clean up below
+            # clean up below
         for i in range(1, len(word)):
             if word[i] in vowels:
                 count += 1
@@ -99,8 +100,8 @@ def countSyllables(word):
 
         if word.startswith('mc'):
             count += 1
-        #maybe remove
-        if word.startswith('trie') or word.startswith ('bie'):
+        # maybe remove
+        if word.startswith('trie') or word.startswith('bie'):
             count += 1
 
         if word.endswith(oneSyllableEnding):
@@ -111,13 +112,12 @@ def countSyllables(word):
     return str(count)
 
 # Main
-#while True:
- #   word = input ('Enter a word: ')
-  #  if word == 'q':
-   #     sys.exit('Program terminated.')
-    #syllables = countSyllables(word)
-    #print('The number of syllables in ' + word + ' is ' + syllables + '.')
-
+# while True:
+#   word = input ('Enter a word: ')
+#  if word == 'q':
+#     sys.exit('Program terminated.')
+# syllables = countSyllables(word)
+# print('The number of syllables in ' + word + ' is ' + syllables + '.')
 
 
 # add pre- co- + vowel
