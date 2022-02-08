@@ -1,7 +1,8 @@
 import pyautogui as pag
 import time
 
-# note: browser window should be open somewhere on the left side of the screen! :)
+# note: browser window should be open somewhere on the left side of the screen
+# works for windows 10 where start menu is on the bottom left of the screen
 
 pag.moveTo(5,1079,2)
 pag.click()
